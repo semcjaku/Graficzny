@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Controller">
+   <children>
+      <VBox layoutX="100.0" layoutY="51.0" prefHeight="300.0" prefWidth="400.0">
+         <children>
+            <Label fx:id="request01" alignment="CENTER" layoutX="125.0" layoutY="175.0" text="Select a data file to load" />
+            <TextField fx:id="fileAddressField" layoutY="100.0" prefWidth="400.0" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
