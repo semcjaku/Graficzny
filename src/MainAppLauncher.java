@@ -31,7 +31,7 @@ public class MainAppLauncher extends Application
         // Set the Scene to the Stage
         stage.setScene(scene);
         // Set the Title to the Stage
-        stage.setTitle("A SceneBuilder Example");
+        stage.setTitle("DF Client");
         // Display the Stage
         stage.show();
     }

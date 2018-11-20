@@ -1,17 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Controller">
+<AnchorPane fx:id="mainPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Controller">
    <children>
-      <VBox layoutX="100.0" layoutY="51.0" prefHeight="300.0" prefWidth="400.0">
-         <children>
-            <Label fx:id="request01" alignment="CENTER" layoutX="125.0" layoutY="175.0" text="Select a data file to load" />
-            <TextField fx:id="fileAddressField" layoutY="100.0" prefWidth="400.0" />
-         </children>
-      </VBox>
+      <TabPane fx:id="tabPane" prefHeight="600.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab fx:id="tabOpen" text="Open File">
+            <content>
+              <AnchorPane fx:id="tabOpenPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox fx:id="vboxOfOpenTab" prefHeight="600.0" prefWidth="800.0">
+                           <children>
+                              <Label fx:id="fileRequest" alignment="CENTER" text="Insert full path to the data file you want to load">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TextField fx:id="filePathField" prefWidth="400.0">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="3.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <Button fx:id="loadButton" mnemonicParsing="false" onAction="#LoadDataFrame" text="Load">
+                                 <VBox.margin>
+                                    <Insets left="5.0" />
+                                 </VBox.margin>
+                              </Button>
+                              <Label fx:id="textLoadSuccess" text="Loaded Successfully" textFill="#1bc61d" visible="false">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </VBox.margin></Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab fx:id="tabCompute" text="Compute">
+            <content>
+              <AnchorPane fx:id="tabComputePane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+          </Tab>
+            <Tab fx:id="tabDiagrams" text="Diagrams">
+               <content>
+                  <AnchorPane fx:id="tabDiagramsPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
    </children>
 </AnchorPane>

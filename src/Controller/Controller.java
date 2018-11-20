@@ -1,56 +1,43 @@
 package Controller;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.paint.Color;
-
 import java.net.URL;
-import java.util.Random;
 import java.util.ResourceBundle;
 
-public class Controller implements Initializable {
+import javafx.beans.property.BooleanProperty;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import lab1.*;
+
+public class Controller
+{
     @FXML
-    private Button randomColorButton;
+    private TextField filePathField;
     @FXML
-    private TextField colorTextField;
+    private Label textLoadSuccess;
+
+    public DataFrame dataBase;
+
     @FXML
-    private Label colorLabel;
-    private final Random randomNumberGenerator = new Random();
-    @Override
-    public void initialize(final URL url, final ResourceBundle rb) {
-        setInitialLabelColor();
-    }
-    private void setInitialLabelColor() {
-        setLabelColor(Color.CADETBLUE.toString());
-    }
-    private void setLabelColor(final String colorString) {
-        try {
-            final Color color = Color.valueOf(colorString);
-            colorLabel.setStyle(
-                    "-fx-background-color: #" + color.toString().substring(2));
-        } catch (NullPointerException | IllegalArgumentException e) {
-            // Do nothing
-        }
-    }
+    private URL location;
+
     @FXML
-    private void handleRandomColorButtonAction(final ActionEvent event) {
-        setLabelColor(generateRandomColorString());
-    }
-    private String generateRandomColorString() {
-        final double red = randomNumberGenerator.nextDouble();
-        final double green = randomNumberGenerator.nextDouble();
-        final double blue = randomNumberGenerator.nextDouble();
-        return Color.color(red, green, blue).toString();
-    }
+    private ResourceBundle resources;
+
+    public Controller() {}
+
     @FXML
-    private void handleColorTextFieldAction(final ActionEvent event) {
-        final String colorString = colorTextField.getText();
-        if (!colorString.isEmpty()) {
-            setLabelColor(colorTextField.getText());
-        }
+    private void initialize() {}
+
+    @FXML
+    private void LoadDataFrame()
+    {
+        Class<? extends Value>[] types = (Class<? extends Value>[]) new Class<?>[4];
+        types[0] = StringValue.class;
+        types[1] = DateTimeValue.class;
+        types[2] = DoubleValue.class;
+        types[3] = DoubleValue.class;
+        dataBase = new DataFrame(filePathField.getText(),types);
+        textLoadSuccess.visibleProperty().setValue(true);
     }
 }
