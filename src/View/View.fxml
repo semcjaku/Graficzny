@@ -5,8 +5,10 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -63,7 +65,60 @@
           </Tab>
           <Tab fx:id="tabCompute" text="Compute">
             <content>
-              <AnchorPane fx:id="tabComputePane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              <AnchorPane fx:id="tabComputePane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox fx:id="vboxOfComputeTab" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <HBox fx:id="hboxOfComputeTab" prefHeight="50.0" prefWidth="800.0">
+                                 <children>
+                                    <Button fx:id="buttonMax" mnemonicParsing="false" prefHeight="30.0" prefWidth="118.0" text="Maximum">
+                                       <HBox.margin>
+                                          <Insets bottom="2.0" left="6.0" right="10.0" top="10.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                    <Button fx:id="buttonMin" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="118.0" text="Minimum">
+                                       <HBox.margin>
+                                          <Insets bottom="2.0" left="6.0" right="10.0" top="10.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                    <Button fx:id="buttonSum" layoutX="62.0" layoutY="10.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="118.0" text="Sum">
+                                       <HBox.margin>
+                                          <Insets bottom="2.0" left="6.0" right="10.0" top="10.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                    <Button fx:id="buttonMean" layoutX="114.0" layoutY="10.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="118.0" text="Mean">
+                                       <HBox.margin>
+                                          <Insets bottom="2.0" left="6.0" right="10.0" top="10.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                    <Button fx:id="buttonStd" layoutX="166.0" layoutY="10.0" mnemonicParsing="false" prefHeight="30.0" text="Standard Deviation">
+                                       <HBox.margin>
+                                          <Insets bottom="2.0" left="6.0" right="10.0" top="10.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                    <Button fx:id="buttonVar" layoutX="218.0" layoutY="10.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="118.0" text="Variance">
+                                       <HBox.margin>
+                                          <Insets bottom="2.0" left="6.0" right="6.0" top="10.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                              <Label fx:id="resultSign" text="Result:">
+                                 <VBox.margin>
+                                    <Insets left="5.0" />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <TextArea fx:id="resultOfOperationText" editable="false" prefHeight="500.0" prefWidth="200.0">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </TextArea>
+                           </children>
+                        </VBox>
+                     </children></AnchorPane>
             </content>
           </Tab>
             <Tab fx:id="tabDiagrams" text="Diagrams">
