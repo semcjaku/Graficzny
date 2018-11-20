@@ -20,6 +20,16 @@
                      <children>
                         <VBox fx:id="vboxOfOpenTab" prefHeight="600.0" prefWidth="800.0">
                            <children>
+                              <Label fx:id="typesRequest" alignment="CENTER" layoutX="15.0" layoutY="15.0" text="Insert types of columns, in order they appear, separated with commas (available types: int, float, double, string, date)">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TextField fx:id="typesField" layoutX="15.0" layoutY="67.0" prefWidth="400.0">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </TextField>
                               <Label fx:id="fileRequest" alignment="CENTER" text="Insert full path to the data file you want to load">
                                  <VBox.margin>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
