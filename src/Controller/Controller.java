@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import javafx.beans.property.BooleanProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import lab1.*;
 
@@ -17,6 +18,10 @@ public class Controller
     private TextField typesField;
     @FXML
     private Label textLoadSuccess;
+    @FXML
+    private TextField textGroupbyField;
+    @FXML
+    private TextArea resultOfOperationText;
 
     public DataFrame dataBase;
 
@@ -53,5 +58,53 @@ public class Controller
         }
         dataBase = new DataFrame(filePathField.getText(),types);
         textLoadSuccess.visibleProperty().setValue(true);
+    }
+
+    @FXML
+    private void MaximumOfGroup()
+    {
+        String[] colNames = textGroupbyField.getText().split(",");
+        GroupWrapper group = dataBase.groupby(colNames);
+        resultOfOperationText.setText(group.max().asString());
+    }
+
+    @FXML
+    private void MinimumOfGroup()
+    {
+        String[] colNames = textGroupbyField.getText().split(",");
+        GroupWrapper group = dataBase.groupby(colNames);
+        resultOfOperationText.setText(group.min().asString());
+    }
+
+    @FXML
+    private void SumOfGroup()
+    {
+        String[] colNames = textGroupbyField.getText().split(",");
+        GroupWrapper group = dataBase.groupby(colNames);
+        resultOfOperationText.setText(group.sum().asString());
+    }
+
+    @FXML
+    private void MeanOfGroup()
+    {
+        String[] colNames = textGroupbyField.getText().split(",");
+        GroupWrapper group = dataBase.groupby(colNames);
+        resultOfOperationText.setText(group.mean().asString());
+    }
+
+    @FXML
+    private void VarianceOfGroup()
+    {
+        String[] colNames = textGroupbyField.getText().split(",");
+        GroupWrapper group = dataBase.groupby(colNames);
+        resultOfOperationText.setText(group.min().asString());
+    }
+
+    @FXML
+    private void DeviationOfGroup()
+    {
+        String[] colNames = textGroupbyField.getText().split(",");
+        GroupWrapper group = dataBase.groupby(colNames);
+        resultOfOperationText.setText(group.min().asString());
     }
 }

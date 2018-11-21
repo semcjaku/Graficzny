@@ -58,6 +58,7 @@ public class MainAppLauncher extends Application
         e.printStackTrace(new PrintWriter(errorMsg));
         Stage dialog = new Stage();
         dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.setTitle("Error");
         FXMLLoader errorLoader = new FXMLLoader();
         String fxmlErrorPath = "/D:/Kuba/AGH/Java/Graficzny/src/View/Error.fxml";
         try {
@@ -68,8 +69,6 @@ public class MainAppLauncher extends Application
             dialog.show();
         } catch (IOException exc) {
             exc.printStackTrace();
-        } /*finally {
-            Platform.exit();
-        }*/
+        }
     }
 }
