@@ -2,9 +2,14 @@ package Controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.concurrent.TimeUnit;
 
-import javafx.beans.property.BooleanProperty;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -22,8 +27,19 @@ public class Controller
     private TextField textGroupbyField;
     @FXML
     private TextArea resultOfOperationText;
+    @FXML
+    private TextField textXAxis;
+    @FXML
+    private TextField textYAxis;
+    @FXML
+    private LineChart<Number,Number> diagram;
+    @FXML
+    private CheckBox checkUpdateDiagram;
+    @FXML
+    private CheckBox checkNewDiagram;
 
     public DataFrame dataBase;
+    public boolean clearDiagram;
 
     @FXML
     private URL location;
@@ -37,10 +53,10 @@ public class Controller
     private void initialize() {}
 
     @FXML
-    private void LoadDataFrame()
+    private void LoadDataFrame() throws InterruptedException
     {
         String[] declaredTypes = typesField.getText().split(",");
-        Class<? extends Value>[] types = (Class<? extends Value>[]) new Class<?>[4];
+        Class<? extends Value>[] types = (Class<? extends Value>[]) new Class<?>[declaredTypes.length];
         for(int i=0;i<declaredTypes.length;i++)
         {
             if(declaredTypes[i].equals("int"))
@@ -106,5 +122,41 @@ public class Controller
         String[] colNames = textGroupbyField.getText().split(",");
         GroupWrapper group = dataBase.groupby(colNames);
         resultOfOperationText.setText(group.min().asString());
+    }
+
+    @FXML
+    private void CreateDiagram()
+    {
+        if(!checkUpdateDiagram.isSelected() && !checkNewDiagram.isSelected())
+        {
+            checkNewDiagram.selectedProperty().setValue(true);
+            clearDiagram = true;
+        }
+        if(clearDiagram)
+            diagram.getData().clear();
+        String xAxisColName = textXAxis.getText();
+        String yAxisColName = textYAxis.getText();
+        XYChart.Series<Number,Number> series = new XYChart.Series<>();
+        series.setName(yAxisColName+" dependent on "+xAxisColName);
+        Column xAxisCol = dataBase.Iloc(0,9).Get(xAxisColName);
+        Column yAxisCol = dataBase.Iloc(0,9).Get(yAxisColName);
+        for(int i=0;i<dataBase.Iloc(0,9).Size();i++)
+            series.getData().add(new XYChart.Data<>((Number)xAxisCol.col.get(i).Get(),(Number)yAxisCol.col.get(i).Get()));
+        diagram.getData().add(series);
+        diagram.visibleProperty().setValue(true);
+    }
+
+    @FXML
+    private void ClearDiagramOn()
+    {
+        checkUpdateDiagram.selectedProperty().setValue(false);
+        clearDiagram = true;
+    }
+
+    @FXML
+    private void ClearDiagramOff()
+    {
+        checkNewDiagram.selectedProperty().setValue(false);
+        clearDiagram = false;
     }
 }
