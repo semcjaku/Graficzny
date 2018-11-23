@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.ScatterChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -18,16 +19,21 @@ import static MainApp.MainAppLauncher.showErrorDialog;
 
 public class Controller
 {
+    //load tab
     @FXML
     private TextField filePathField;
     @FXML
     private TextField typesField;
     @FXML
     private Label textLoadSuccess;
+
+    //compute tab
     @FXML
     private TextField textGroupbyField;
     @FXML
     private TextArea resultOfOperationText;
+
+    //line chart tab
     @FXML
     private TextField textXAxis;
     @FXML
@@ -39,8 +45,17 @@ public class Controller
     @FXML
     private CheckBox checkNewDiagram;
 
-    public DataFrame dataBase;
-    public boolean clearDiagram;
+    //scatter plot tab
+    @FXML
+    private TextField textXAxisS;
+    @FXML
+    private TextField textYAxisS;
+    @FXML
+    private ScatterChart<Number,Number> scatterChart;
+
+
+    public DataFrame dataBase; //the df itself
+    public boolean clearDiagram; //line chart tab
 
     @FXML
     private URL location;
