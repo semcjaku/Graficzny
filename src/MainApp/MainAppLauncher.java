@@ -1,3 +1,4 @@
+package MainApp;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -7,7 +8,6 @@ import Controller.ErrorController;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -53,7 +53,7 @@ public class MainAppLauncher extends Application
         }
     }
 
-    private static void showErrorDialog(Throwable e) {
+    public static void showErrorDialog(Throwable e) {
         StringWriter errorMsg = new StringWriter();
         e.printStackTrace(new PrintWriter(errorMsg));
         Stage dialog = new Stage();
@@ -64,7 +64,8 @@ public class MainAppLauncher extends Application
         try {
             FileInputStream fxmlStream = new FileInputStream(fxmlErrorPath);
             BorderPane root = errorLoader.load(fxmlStream);
-            ((ErrorController)errorLoader.getController()).setErrorText(e.getMessage()+"\n\r"+errorMsg.toString());
+            ((ErrorController)errorLoader.getController()).setErrorText(e.getMessage());
+            ((ErrorController)errorLoader.getController()).setErrorStackTrace(errorMsg.toString());
             dialog.setScene(new Scene(root, 250, 400));
             dialog.show();
         } catch (IOException exc) {

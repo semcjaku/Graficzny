@@ -2,7 +2,6 @@ package Controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.concurrent.TimeUnit;
 
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -14,6 +13,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import lab1.*;
+
+import static MainApp.MainAppLauncher.showErrorDialog;
 
 public class Controller
 {
@@ -53,75 +54,105 @@ public class Controller
     private void initialize() {}
 
     @FXML
-    private void LoadDataFrame() throws InterruptedException
+    private void LoadDataFrame()
     {
-        String[] declaredTypes = typesField.getText().split(",");
-        Class<? extends Value>[] types = (Class<? extends Value>[]) new Class<?>[declaredTypes.length];
-        for(int i=0;i<declaredTypes.length;i++)
-        {
-            if(declaredTypes[i].equals("int"))
-                types[i] = IntegerValue.class;
-            else if(declaredTypes[i].equals("float"))
-                types[i] = FloatValue.class;
-            else if(declaredTypes[i].equals("double"))
-                types[i] = DoubleValue.class;
-            else if(declaredTypes[i].equals("date"))
-                types[i] = DateTimeValue.class;
-            else if(declaredTypes[i].equals("string"))
-                types[i] = StringValue.class;
-            else
-                throw new IllegalArgumentException("Unsupported type or formatting");
+        try{
+            String[] declaredTypes = typesField.getText().split(",");
+            Class<? extends Value>[] types = (Class<? extends Value>[]) new Class<?>[declaredTypes.length];
+            for(int i=0;i<declaredTypes.length;i++)
+            {
+                if(declaredTypes[i].equals("int"))
+                    types[i] = IntegerValue.class;
+                else if(declaredTypes[i].equals("float"))
+                    types[i] = FloatValue.class;
+                else if(declaredTypes[i].equals("double"))
+                    types[i] = DoubleValue.class;
+                else if(declaredTypes[i].equals("date"))
+                    types[i] = DateTimeValue.class;
+                else if(declaredTypes[i].equals("string"))
+                    types[i] = StringValue.class;
+                else
+                    throw new IllegalArgumentException("Unsupported type or formatting");
+            }
+            dataBase = new DataFrame(filePathField.getText(),types);
+            textLoadSuccess.visibleProperty().setValue(true);
+        } catch (Exception e) {
+            showErrorDialog(e);
         }
-        dataBase = new DataFrame(filePathField.getText(),types);
-        textLoadSuccess.visibleProperty().setValue(true);
+
     }
 
     @FXML
     private void MaximumOfGroup()
     {
-        String[] colNames = textGroupbyField.getText().split(",");
-        GroupWrapper group = dataBase.groupby(colNames);
-        resultOfOperationText.setText(group.max().asString());
+        try{
+            String[] colNames = textGroupbyField.getText().split(",");
+            GroupWrapper group = dataBase.groupby(colNames);
+            resultOfOperationText.setText(group.max().asString());
+        } catch (Exception e) {
+            showErrorDialog(e);
+        }
+
     }
 
     @FXML
     private void MinimumOfGroup()
     {
-        String[] colNames = textGroupbyField.getText().split(",");
-        GroupWrapper group = dataBase.groupby(colNames);
-        resultOfOperationText.setText(group.min().asString());
+        try{
+            String[] colNames = textGroupbyField.getText().split(",");
+            GroupWrapper group = dataBase.groupby(colNames);
+            resultOfOperationText.setText(group.min().asString());
+        } catch (Exception e) {
+            showErrorDialog(e);
+        }
     }
 
     @FXML
     private void SumOfGroup()
     {
-        String[] colNames = textGroupbyField.getText().split(",");
-        GroupWrapper group = dataBase.groupby(colNames);
-        resultOfOperationText.setText(group.sum().asString());
+        try{
+            String[] colNames = textGroupbyField.getText().split(",");
+            GroupWrapper group = dataBase.groupby(colNames);
+            resultOfOperationText.setText(group.sum().asString());
+        } catch (Exception e) {
+            showErrorDialog(e);
+        }
     }
 
     @FXML
     private void MeanOfGroup()
     {
-        String[] colNames = textGroupbyField.getText().split(",");
-        GroupWrapper group = dataBase.groupby(colNames);
-        resultOfOperationText.setText(group.mean().asString());
+        try{
+            String[] colNames = textGroupbyField.getText().split(",");
+            GroupWrapper group = dataBase.groupby(colNames);
+            resultOfOperationText.setText(group.mean().asString());
+        } catch (Exception e) {
+            showErrorDialog(e);
+        }
     }
 
     @FXML
     private void VarianceOfGroup()
     {
-        String[] colNames = textGroupbyField.getText().split(",");
-        GroupWrapper group = dataBase.groupby(colNames);
-        resultOfOperationText.setText(group.min().asString());
+        try{
+            String[] colNames = textGroupbyField.getText().split(",");
+            GroupWrapper group = dataBase.groupby(colNames);
+            resultOfOperationText.setText(group.var().asString());
+        } catch (Exception e) {
+            showErrorDialog(e);
+        }
     }
 
     @FXML
     private void DeviationOfGroup()
     {
-        String[] colNames = textGroupbyField.getText().split(",");
-        GroupWrapper group = dataBase.groupby(colNames);
-        resultOfOperationText.setText(group.min().asString());
+        try{
+            String[] colNames = textGroupbyField.getText().split(",");
+            GroupWrapper group = dataBase.groupby(colNames);
+            resultOfOperationText.setText(group.std().asString());
+        } catch (Exception e) {
+            showErrorDialog(e);
+        }
     }
 
     @FXML
@@ -134,16 +165,21 @@ public class Controller
         }
         if(clearDiagram)
             diagram.getData().clear();
-        String xAxisColName = textXAxis.getText();
-        String yAxisColName = textYAxis.getText();
-        XYChart.Series<Number,Number> series = new XYChart.Series<>();
-        series.setName(yAxisColName+" dependent on "+xAxisColName);
-        Column xAxisCol = dataBase.Iloc(0,9).Get(xAxisColName);
-        Column yAxisCol = dataBase.Iloc(0,9).Get(yAxisColName);
-        for(int i=0;i<dataBase.Iloc(0,9).Size();i++)
-            series.getData().add(new XYChart.Data<>((Number)xAxisCol.col.get(i).Get(),(Number)yAxisCol.col.get(i).Get()));
-        diagram.getData().add(series);
-        diagram.visibleProperty().setValue(true);
+
+        try{
+            String xAxisColName = textXAxis.getText();
+            String yAxisColName = textYAxis.getText();
+            XYChart.Series<Number,Number> series = new XYChart.Series<>();
+            series.setName(yAxisColName+" dependent on "+xAxisColName);
+            Column xAxisCol = dataBase.Iloc(0,9).Get(xAxisColName);
+            Column yAxisCol = dataBase.Iloc(0,9).Get(yAxisColName);
+            for(int i=0;i<dataBase.Iloc(0,9).Size();i++)
+                series.getData().add(new XYChart.Data<>((Number)xAxisCol.col.get(i).Get(),(Number)yAxisCol.col.get(i).Get()));
+            diagram.getData().add(series);
+            diagram.visibleProperty().setValue(true);
+        } catch (Exception e) {
+            showErrorDialog(e);
+        }
     }
 
     @FXML
