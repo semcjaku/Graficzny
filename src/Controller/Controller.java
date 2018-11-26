@@ -3,16 +3,17 @@ package Controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.geometry.Orientation;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.ScatterChart;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import lab1.*;
 
 import static MainApp.MainAppLauncher.showErrorDialog;
@@ -26,6 +27,12 @@ public class Controller
     private TextField typesField;
     @FXML
     private Label textLoadSuccess;
+
+    //lazy load tab
+    @FXML
+    private Label showingSign;
+    @FXML
+    private ListView<String> DFDisplayList;
 
     //compute tab
     @FXML
@@ -56,6 +63,10 @@ public class Controller
 
     public DataFrame dataBase; //the df itself
     public boolean clearDiagram; //line chart tab
+    private ObservableList<String> listItems; //first records to display
+    private ObservableList<String> bigData; //remaining records to display
+    private int lazyStep = 100; //step of lazy load
+    private int start=0,step=lazyStep; //scrolling controls for lazy load
 
     @FXML
     private URL location;
@@ -209,5 +220,49 @@ public class Controller
     {
         checkNewDiagram.selectedProperty().setValue(false);
         clearDiagram = false;
+    }
+
+    @FXML
+    private void LoadFirstPage()
+    {
+        showingSign.setText("Showing 0-"+(lazyStep-1)+"/"+dataBase.Size());
+        listItems = FXCollections.observableArrayList();
+        for(int i=0;i<lazyStep;i++)
+            listItems.add(dataBase.RowAsString(i));
+        DFDisplayList.setItems(listItems);
+
+        PopulateBigData();
+
+        ScrollBar listViewScrollBar = getListViewScrollBar(DFDisplayList);
+        listViewScrollBar.valueProperty().addListener((observable, oldValue, newValue) -> {
+            double position = newValue.doubleValue();
+            ScrollBar scrollBar = getListViewScrollBar(DFDisplayList);
+            if (position == scrollBar.getMax()) {
+                if (lazyStep <= bigData.size()) {
+                    listItems.addAll(bigData.subList(start, step));
+                    start = step;
+                    step += lazyStep;
+                }
+            }
+        });
+    }
+
+    private void PopulateBigData() {
+        bigData = FXCollections.observableArrayList();
+        for(int i=0;i<lazyStep;i++)
+            bigData.add(dataBase.RowAsString(i));
+    }
+
+    private ScrollBar getListViewScrollBar(ListView<?> listView) {
+        ScrollBar scrollbar = null;
+        for (Node node : listView.lookupAll(".scroll-bar")) {
+            if (node instanceof ScrollBar) {
+                ScrollBar bar = (ScrollBar) node;
+                if (bar.getOrientation().equals(Orientation.VERTICAL)) {
+                    scrollbar = bar;
+                }
+            }
+        }
+        return scrollbar;
     }
 }
