@@ -66,7 +66,7 @@ public class Controller
     private ObservableList<String> listItems; //first records to display
     private ObservableList<String> bigData; //remaining records to display
     private int lazyStep = 100; //step of lazy load
-    private int start=0,step=lazyStep; //scrolling controls for lazy load
+    private int start=0,step=lazyStep-1; //scrolling controls for lazy load
 
     @FXML
     private URL location;
@@ -242,14 +242,16 @@ public class Controller
                     listItems.addAll(bigData.subList(start, step));
                     start = step;
                     step += lazyStep;
+                    showingSign.setText("Showing 0-"+step+"/"+dataBase.Size());
                 }
+                listViewScrollBar.valueProperty().setValue((double)start/(double)step);
             }
         });
     }
 
     private void PopulateBigData() {
         bigData = FXCollections.observableArrayList();
-        for(int i=0;i<lazyStep;i++)
+        for(int i=lazyStep;i<dataBase.Size();i++)
             bigData.add(dataBase.RowAsString(i));
     }
 
