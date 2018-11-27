@@ -238,7 +238,14 @@ public class Controller
             double position = newValue.doubleValue();
             ScrollBar scrollBar = getListViewScrollBar(DFDisplayList);
             if (position == scrollBar.getMax()) {
-                if (lazyStep <= bigData.size()) {
+                if (step+lazyStep > bigData.size()-1)
+                {
+                    listItems.addAll(bigData.subList(start, bigData.size()-1));
+                    start = step;
+                    step = bigData.size()-1;
+                    showingSign.setText("Showing Everything ("+dataBase.Size()+" records)");
+                }
+                 else if (lazyStep <= bigData.size()) {
                     listItems.addAll(bigData.subList(start, step));
                     start = step;
                     step += lazyStep;
