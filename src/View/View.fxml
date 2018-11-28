@@ -44,7 +44,7 @@
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </VBox.margin>
                               </Label>
-                              <TextField fx:id="filePathField" prefWidth="400.0">
+                              <TextField fx:id="filePathField" prefWidth="400.0" text="/C:/Temp/">
                                  <VBox.margin>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="3.0" />
                                  </VBox.margin>
@@ -303,9 +303,9 @@
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab fx:id="tabDiagrams1" text="Bar Chart">
+            <Tab fx:id="tabBar" text="Bar Chart">
                <content>
-                  <AnchorPane fx:id="tabDiagramsPane2" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <AnchorPane fx:id="tabBarPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <Label fx:id="selectColumnsSignB" text="Select Columns" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0">
                            <font>
@@ -324,7 +324,7 @@
                                           <Insets left="5.0" right="5.0" />
                                        </HBox.margin>
                                        <children>
-                                          <Label text="X Axis" fx:id="xAxisSignB">
+                                          <Label text="Categories" fx:id="xAxisSignB">
                                              <font>
                                                 <Font size="13.0" />
                                              </font>
@@ -337,7 +337,7 @@
                                           <Insets left="5.0" right="5.0" />
                                        </HBox.margin>
                                        <children>
-                                          <Label fx:id="yAxisSignB" text="Y Axis">
+                                          <Label fx:id="yAxisSignB" text="Values">
                                              <font>
                                                 <Font size="13.0" />
                                              </font>
@@ -347,19 +347,36 @@
                                     </VBox>
                                  </children>
                               </HBox>
-                              <Button fx:id="buttonBarChart" mnemonicParsing="false" onAction="#CreateDiagram" text="Create Diagram">
+                              <HBox prefHeight="20.0" prefWidth="200.0">
+                                 <children>
+                                    <CheckBox fx:id="checkHorizontal" mnemonicParsing="false" onAction="#ClearDiagramOff" text="Horizontal">
+                                       <HBox.margin>
+                                          <Insets left="310.0" />
+                                       </HBox.margin>
+                                    </CheckBox>
+                                    <CheckBox fx:id="checkStacked" mnemonicParsing="false" onAction="#ClearDiagramOn" text="Stacked">
+                                       <HBox.margin>
+                                          <Insets left="10.0" />
+                                       </HBox.margin>
+                                    </CheckBox>
+                                 </children>
                                  <VBox.margin>
-                                    <Insets left="350.0" />
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <Button fx:id="buttonBar" mnemonicParsing="false" onAction="#AddBarSeries" text="Add data series">
+                                 <VBox.margin>
+                                    <Insets left="345.0" />
                                  </VBox.margin>
                               </Button>
                            </children>
                         </VBox>
                         <BarChart fx:id="barChart" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
                           <xAxis>
-                            <CategoryAxis side="BOTTOM" />
+                            <CategoryAxis fx:id="categoryAxis" side="BOTTOM" />
                           </xAxis>
                           <yAxis>
-                            <NumberAxis side="LEFT" />
+                            <NumberAxis fx:id="numberAxis" side="LEFT" />
                           </yAxis>
                         </BarChart>
                      </children>

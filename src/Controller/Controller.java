@@ -8,15 +8,13 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Orientation;
 import javafx.scene.Node;
-import javafx.scene.Scene;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.ScatterChart;
-import javafx.scene.chart.XYChart;
+import javafx.scene.chart.*;
 import javafx.scene.control.*;
 import lab1.*;
 
 import static MainApp.MainAppLauncher.showErrorDialog;
+import static javafx.geometry.Side.BOTTOM;
+import static javafx.geometry.Side.LEFT;
 
 public class Controller
 {
@@ -59,6 +57,22 @@ public class Controller
     private TextField textYAxisS;
     @FXML
     private ScatterChart<Number,Number> scatterChart;
+
+    //bar chart tab
+    @FXML
+    private TextField textXAxisB;
+    @FXML
+    private TextField textYAxisB;
+    @FXML
+    private BarChart barChart;
+    @FXML
+    private CheckBox checkHorizontal;
+    @FXML
+    private CheckBox checkStacked;
+    @FXML
+    private CategoryAxis categoryAxis;
+    @FXML
+    private NumberAxis numberAxis;
 
 
     public DataFrame dataBase; //the df itself
@@ -283,9 +297,9 @@ public class Controller
             String yAxisColName = textYAxisS.getText();
             XYChart.Series<Number,Number> series = new XYChart.Series<>();
             series.setName(yAxisColName+" dependent on "+xAxisColName);
-            Column xAxisCol = dataBase.Iloc(0,100).Get(xAxisColName);
-            Column yAxisCol = dataBase.Iloc(0,100).Get(yAxisColName);
-            for(int i=0;i<dataBase.Iloc(0,100).Size();i++)
+            Column xAxisCol = dataBase.Get(xAxisColName);
+            Column yAxisCol = dataBase.Get(yAxisColName);
+            for(int i=0;i<dataBase.Size();i++)
                 series.getData().add(new XYChart.Data<>((Number)xAxisCol.col.get(i).Get(),(Number)yAxisCol.col.get(i).Get()));
             scatterChart.getData().add(series);
         } catch (Exception e) {
@@ -301,5 +315,28 @@ public class Controller
         } catch (Exception e) {
             showErrorDialog(e);
         }
+    }
+
+    @FXML
+    private void AddBarSeries()
+    {
+        if(checkHorizontal.isSelected())
+        {
+            barChart.getXAxis().sideProperty().setValue(LEFT);
+            barChart.getYAxis().sideProperty().setValue(BOTTOM);
+        }
+
+        barChart.getXAxis().setLabel(textXAxisB.getText());
+        barChart.getYAxis().setLabel(textYAxisB.getText());
+
+        String xAxisColName = textXAxisB.getText();
+        String yAxisColName = textYAxisB.getText();
+        XYChart.Series<String,Number> series = new XYChart.Series<>();
+        series.setName("napis");
+        Column xAxisCol = dataBase.Iloc(0,99).Get(xAxisColName);
+        Column yAxisCol = dataBase.Iloc(0,99).Get(yAxisColName);
+        for(int i=0;i<dataBase.Iloc(0,99).Size();i++)
+            series.getData().add(new XYChart.Data<>(xAxisCol.col.get(i).toString(),(Number)yAxisCol.col.get(i).Get()));
+        barChart.getData().add(series);
     }
 }
