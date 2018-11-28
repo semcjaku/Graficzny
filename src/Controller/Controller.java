@@ -197,9 +197,9 @@ public class Controller
             String yAxisColName = textYAxis.getText();
             XYChart.Series<Number,Number> series = new XYChart.Series<>();
             series.setName(yAxisColName+" dependent on "+xAxisColName);
-            Column xAxisCol = dataBase.Iloc(0,9).Get(xAxisColName);
-            Column yAxisCol = dataBase.Iloc(0,9).Get(yAxisColName);
-            for(int i=0;i<dataBase.Iloc(0,9).Size();i++)
+            Column xAxisCol = dataBase.Get(xAxisColName);
+            Column yAxisCol = dataBase.Get(yAxisColName);
+            for(int i=0;i<dataBase.Size();i++)
                 series.getData().add(new XYChart.Data<>((Number)xAxisCol.col.get(i).Get(),(Number)yAxisCol.col.get(i).Get()));
             diagram.getData().add(series);
             diagram.visibleProperty().setValue(true);
@@ -223,7 +223,7 @@ public class Controller
     }
 
     @FXML
-    private void LoadFirstPage()
+    private void DisplayData()
     {
         showingSign.setText("Showing 0-"+(lazyStep-1)+"/"+dataBase.Size());
         listItems = FXCollections.observableArrayList();
@@ -273,5 +273,33 @@ public class Controller
             }
         }
         return scrollbar;
+    }
+
+    @FXML
+    private void AddScatterPlot()
+    {
+        try{
+            String xAxisColName = textXAxisS.getText();
+            String yAxisColName = textYAxisS.getText();
+            XYChart.Series<Number,Number> series = new XYChart.Series<>();
+            series.setName(yAxisColName+" dependent on "+xAxisColName);
+            Column xAxisCol = dataBase.Iloc(0,100).Get(xAxisColName);
+            Column yAxisCol = dataBase.Iloc(0,100).Get(yAxisColName);
+            for(int i=0;i<dataBase.Iloc(0,100).Size();i++)
+                series.getData().add(new XYChart.Data<>((Number)xAxisCol.col.get(i).Get(),(Number)yAxisCol.col.get(i).Get()));
+            scatterChart.getData().add(series);
+        } catch (Exception e) {
+            showErrorDialog(e);
+        }
+    }
+
+    @FXML
+    private void RemoveScatterPlot()
+    {
+        try{
+            scatterChart.getData().remove(scatterChart.getData().size()-1);
+        } catch (Exception e) {
+            showErrorDialog(e);
+        }
     }
 }

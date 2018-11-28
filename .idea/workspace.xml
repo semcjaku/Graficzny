@@ -12,7 +12,7 @@
     <session id="-288450238">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="18" />
+          <entry key="project.closed" value="20" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.1" value="2" />
           <entry key="project.open.time.100" value="1" />
@@ -20,9 +20,10 @@
           <entry key="project.open.time.107" value="1" />
           <entry key="project.open.time.11" value="1" />
           <entry key="project.open.time.112" value="1" />
+          <entry key="project.open.time.114" value="1" />
           <entry key="project.open.time.126" value="1" />
           <entry key="project.open.time.138" value="1" />
-          <entry key="project.open.time.2" value="3" />
+          <entry key="project.open.time.2" value="4" />
           <entry key="project.open.time.29" value="1" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.4" value="1" />
@@ -30,7 +31,7 @@
           <entry key="project.open.time.94" value="1" />
           <entry key="project.open.time.95" value="1" />
           <entry key="project.open.time.96" value="1" />
-          <entry key="project.opened" value="20" />
+          <entry key="project.opened" value="22" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -50,25 +51,25 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="13" />
-          <entry key="fxml" value="174" />
-          <entry key="java" value="3096" />
+          <entry key="fxml" value="191" />
+          <entry key="java" value="3381" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="3096" />
+          <entry key="JAVA" value="3381" />
           <entry key="PLAIN_TEXT" value="13" />
-          <entry key="XML" value="174" />
+          <entry key="XML" value="191" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/MainApp/MainAppLauncher.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="850">
+            <state relative-caret-position="529">
               <caret line="66" column="88" selection-start-line="66" selection-start-column="88" selection-end-line="66" selection-end-column="88" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -77,11 +78,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="242" column="76" selection-start-line="242" selection-start-column="76" selection-end-line="242" selection-end-column="76" />
+            <state relative-caret-position="56">
+              <caret line="60" column="53" selection-start-line="60" selection-start-column="53" selection-end-line="60" selection-end-column="53" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -91,12 +92,12 @@
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/View/View.fxml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="81" column="34" selection-start-line="81" selection-start-column="34" selection-end-line="81" selection-end-column="34" />
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="573">
+              <caret line="299" column="34" lean-forward="true" selection-start-line="299" selection-start-column="34" selection-end-line="299" selection-end-column="34" />
             </state>
           </provider>
-          <provider editor-type-id="JavaFX-Scene-Builder" />
+          <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
         </entry>
       </file>
     </leaf>
@@ -121,8 +122,8 @@
         <option value="$PROJECT_DIR$/src/Controller/ErrorController.java" />
         <option value="$PROJECT_DIR$/src/MainApp/MainAppLauncher.java" />
         <option value="$PROJECT_DIR$/src/View/Error.fxml" />
-        <option value="$PROJECT_DIR$/src/View/View.fxml" />
         <option value="$PROJECT_DIR$/src/Controller/Controller.java" />
+        <option value="$PROJECT_DIR$/src/View/View.fxml" />
       </list>
     </option>
   </component>
@@ -183,7 +184,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543328393308" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543335729392" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/Obiektowe.jar!/" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -293,18 +294,20 @@
       <workItem from="1543230266688" duration="1688000" />
       <workItem from="1543236108454" duration="881000" />
       <workItem from="1543237558688" duration="6635000" />
-      <workItem from="1543319164776" duration="8435000" />
+      <workItem from="1543319164776" duration="11846000" />
+      <workItem from="1543414363107" duration="284000" />
+      <workItem from="1543414720441" duration="1819000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="76572000" />
+    <option name="totallyTimeSpent" value="82086000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17397882" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1785174" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -364,10 +367,10 @@
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MainApp/MainAppLauncher.java">
+    <entry file="file://$PROJECT_DIR$/src/Controller/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="850">
-          <caret line="66" column="88" selection-start-line="66" selection-start-column="88" selection-end-line="66" selection-end-column="88" />
+        <state relative-caret-position="56">
+          <caret line="60" column="53" selection-start-line="60" selection-start-column="53" selection-end-line="60" selection-end-column="53" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -375,17 +378,17 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/View/View.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="81" column="34" selection-start-line="81" selection-start-column="34" selection-end-line="81" selection-end-column="34" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="573">
+          <caret line="299" column="34" lean-forward="true" selection-start-line="299" selection-start-column="34" selection-end-line="299" selection-end-column="34" />
         </state>
       </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/Controller.java">
+    <entry file="file://$PROJECT_DIR$/src/MainApp/MainAppLauncher.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="242" column="76" selection-start-line="242" selection-start-column="76" selection-end-line="242" selection-end-column="76" />
+        <state relative-caret-position="529">
+          <caret line="66" column="88" selection-start-line="66" selection-start-column="88" selection-end-line="66" selection-end-column="88" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

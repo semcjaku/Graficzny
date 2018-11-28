@@ -70,7 +70,7 @@
                   </AnchorPane>
             </content>
           </Tab>
-            <Tab fx:id="tabLazyLoad" onSelectionChanged="#LoadFirstPage" text="Display Data">
+            <Tab fx:id="tabLazyLoad" onSelectionChanged="#DisplayData" text="Display Data">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -276,14 +276,17 @@
                               </HBox>
                               <HBox prefHeight="40.0" prefWidth="200.0">
                                  <children>
-                                    <Button fx:id="buttonScatterAdd" mnemonicParsing="false" onAction="#CreateDiagram" prefHeight="30.0" prefWidth="70.0" text="Add Plot" textFill="#1ebf3c">
+                                    <Button fx:id="buttonScatterAdd" mnemonicParsing="false" onAction="#AddScatterPlot" prefHeight="30.0" prefWidth="70.0" text="Add Plot" textFill="#1ebf3c">
                                        <HBox.margin>
                                           <Insets bottom="5.0" left="300.0" right="5.0" top="5.0" />
                                        </HBox.margin></Button>
-                                    <Button fx:id="buttonScatterRemove" mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0" text="Remove Plot" textFill="#d01d1d">
+                                    <Button fx:id="buttonScatterRemove" mnemonicParsing="false" onAction="#RemoveScatterPlot" prefHeight="30.0" prefWidth="130.0" text="Remove Plot" textFill="#d01d1d">
                                        <HBox.margin>
                                           <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                       </HBox.margin></Button>
+                                       </HBox.margin>
+                                       <graphic>
+                                          <TextField fx:id="numberOfPlot" alignment="TOP_LEFT" prefWidth="25.0" text="0" />
+                                       </graphic></Button>
                                  </children>
                                  <VBox.margin>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -293,7 +296,7 @@
                         </VBox>
                         <ScatterChart fx:id="scatterChart" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
                           <xAxis>
-                            <CategoryAxis side="BOTTOM" />
+                            <NumberAxis side="BOTTOM" />
                           </xAxis>
                           <yAxis>
                             <NumberAxis side="LEFT" />
